@@ -1,4 +1,5 @@
 import csv
+import re
 
 inputpath=input("Enter the input path file:")
 countWhat=input("Enter what needs to be count:")
@@ -19,7 +20,8 @@ with open(inputpath,'r',newline='') as inputfile:
     csv_reader = csv.reader(inputfile,delimiter=' ')
     for i in csv_reader:
         for j in i:
-            if (countWhat in j):
+            removespl = re.sub('[,.?!]', '', j)
+            if (removespl==countWhat):
                 count+=1
 
-print("The occurance of "+countWhat+" in th file is "+str(count))
+print("The occurance of "+countWhat+" in the file is "+str(count))
